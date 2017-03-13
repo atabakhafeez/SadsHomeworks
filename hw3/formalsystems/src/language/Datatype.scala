@@ -100,8 +100,8 @@ case class Apply(fun: Term, args: Term) extends Term
 //TODO pairs and projections for product types
 
 /** product types terms */
-case class Pair() extends Term
-case class Projection() extends Term
+case class Pair(term1: Term, term2: Term) extends Term
+case class Projection(product: ProductType, term: Term) extends Term
 
 object Operator {
   /** the list of infix operators */
