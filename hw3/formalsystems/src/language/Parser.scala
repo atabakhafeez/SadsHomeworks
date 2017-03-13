@@ -248,6 +248,10 @@ class Parser(input: String) {
         case _ =>
           tm
       }
+    } else if (startsWith("*")) {
+      parseTerminal("*")
+      val pairTerm = parseTerm
+      Pair(tm, pairTerm)
     } else {
       // check if an infix operator follows 
       Operator.builtInInfixOperators.find(startsWith) match {
