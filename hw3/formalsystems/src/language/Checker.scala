@@ -51,6 +51,9 @@ object Checker {
     case FunType(f,t) =>
       checkType(context, f)
       checkType(context, t)
+    case ProductType(a, b) =>
+      checkType(context, a)
+      checkType(context, b)
   }}
   
   // tm is well-formed if we can infer tp such that context |- tm : tp
@@ -101,6 +104,7 @@ object Checker {
               case (Int(),Int()) => op match {
                 case "+" | "-" | "*" | "mod" | "div" => Int()
                 case "<=" | ">=" => Bool()
+                case "," => ProductType(argTypes(0), argTypes(1))
                 case _ => throw Error("ill-typed operator application")
               }
               // operators on booleans
@@ -132,6 +136,22 @@ object Checker {
             to
           case _ =>
             throw Error("non-function applied to argument")
+        }
+
+      case Pair(a, b) =>
+        ProductType(inferType(context, a), inferType(context, b))
+
+      case Projection(a, i) =>
+        val tm = inferType(context, a)
+        tm match {
+          case ProductType(a,b) =>
+            i match {
+              case 1 => a
+              case 2 => b
+              case _ => throw Error("projection index not possible: " + i)
+            }
+          case _ =>
+            throw Error("wrong term using in projection")
         }
     }
   }
