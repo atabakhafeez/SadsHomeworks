@@ -98,7 +98,7 @@ case class Apply(fun: Term, args: Term) extends Term
 
 /** product types terms */
 case class Pair(term1: Term, term2: Term) extends Term
-case class Projection(product: ProductType, term: Term) extends Term
+case class Projection(pair: Term, index: scala.Int) extends Term
 
 object Operator {
   /** the list of infix operators */

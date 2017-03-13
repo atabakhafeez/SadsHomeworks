@@ -222,9 +222,11 @@ class Parser(input: String) {
     if (startsWith(".")) {
       // projections out of tm
       parseTerminal(".")
-      val n = parseDigits
-      ??? //TODO for product types
-      // Projection(tm, ???)
+      val n = parseDigits.toInt
+      if (n != 1 || n != 2) {
+        throw Error("index not 1 or 2")
+      }
+      Projection(tm, n)
     } else if (startsWith("(")) {
       // function application of tm
       parseTerminal("(")
