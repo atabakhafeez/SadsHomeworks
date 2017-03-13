@@ -159,8 +159,7 @@ class Parser(input: String) {
       }
     }
     // we have a type now; we check what comes next to decide if we should parse more
-    //TODO for product types: handle infix operator *
-    val infixOps = List("->")
+    val infixOps = List("->", "*")
     parseWhitespace
     // check if an infix operator follows 
     infixOps.find(startsWith) match {
@@ -170,6 +169,7 @@ class Parser(input: String) {
         val second = parseType
         op match {
           case "->" => FunType(tp,second)
+          case "*" => ProductType(tp, second)
         }
       case None =>
         // something else follows: done
@@ -224,6 +224,7 @@ class Parser(input: String) {
       parseTerminal(".")
       val n = parseDigits
       ??? //TODO for product types
+      // Projection(tm, ???)
     } else if (startsWith("(")) {
       // function application of tm
       parseTerminal("(")
