@@ -44,6 +44,6 @@ object Printer {
      case Lambda(x,a,t) => printName(x) + ": " + printType(a) + " => " + printTerm(t)
      case Apply(f,a) => printTerm(f) + "(" + printTerm(a) + ")"
      case Pair(a, b) => "(" + printTerm(a) + "*" + printTerm(b) + ")"
-     case Projection(a, i) => printTerm(t) + "." + i.toString
+     case Projection(a, i) => printTerm(a) + "." + i.toString
    }
 }
