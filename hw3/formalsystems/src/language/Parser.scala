@@ -223,9 +223,7 @@ class Parser(input: String) {
       // projections out of tm
       parseTerminal(".")
       val n = parseDigits.toInt
-      if (n != 1 || n != 2) {
-        throw Error("index not 1 or 2")
-      }
+      print(n)
       Projection(tm, n)
     } else if (startsWith("(")) {
       // function application of tm
@@ -248,10 +246,6 @@ class Parser(input: String) {
         case _ =>
           tm
       }
-    } else if (startsWith("*")) {
-      parseTerminal("*")
-      val pairTerm = parseTerm
-      Pair(tm, pairTerm)
     } else {
       // check if an infix operator follows 
       Operator.builtInInfixOperators.find(startsWith) match {
