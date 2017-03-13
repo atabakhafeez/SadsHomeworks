@@ -69,7 +69,6 @@ case class Unit() extends Type
 case class Int() extends Type
 case class Bool() extends Type
 case class FunType(from: Type, to: Type) extends Type
-//TODO product types, more base types
 
 /** Product Types */
 case class ProductType(A: Type, B: Type) extends Type
@@ -96,8 +95,6 @@ case class Lambda(argName: Name, argType: Type, body: Term) extends Term
 
 /** function application */
 case class Apply(fun: Term, args: Term) extends Term
-
-//TODO pairs and projections for product types
 
 /** product types terms */
 case class Pair(term1: Term, term2: Term) extends Term
