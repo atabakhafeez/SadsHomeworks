@@ -1,0 +1,56 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+
+\title{Sads HW5	}
+\author{Atabak Hafeez}
+%\date{}							% Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+
+
+\section{Verification: Class Invariants}
+
+We need to argue about the three functions. 
+
+\begin{description}
+\item[getSize] 
+This does not change the value of any mutable variable and just returns size. Hence, the loop invariant holds here.
+\item[push]
+If an element is pushed, the size is incremented by 1. Hence the length increases by 1 and the size increases by 1, which maintains the loop invariant.
+\item[pop] 
+If an element is popped, the size is decremented by 1. Hence, the length decreases by 1 and size decreases by 1, which maintains the loop invariant.
+\end{description}
+
+The loop invariant holds for a new instance as well: $length(NIL) = size = 0$
+
+\section{Verification: Class Invariants}
+
+\section{Verification: Pure Functions}
+
+Using induction:
+
+Base case: 
+Using zero\_left and zero\_right rule from notes: 
+$$ zero + n == m + zero \Rightarrow n = m  $$
+
+Step case:
+Inductive hypothesis: $ n + m == m + n $
+$$ succ(n) + m == m + succ(n) $$
+$$ \Rightarrow succ(n + m) == m + succ(n) $$
+By inductive hypothesis $ \Rightarrow succ(m + n) == m + succ(n)$
+$$ \Rightarrow m + succ(n) == m + succ(n)$$
+
+Hence, proven.
+
+\section{Proof Assistants}
+
+I installed coq. I used an example given with the installation files. The Factorial defined recursively under /theories/Arith was run using the ide. I have given screenshots for each step of the proof check.
+
+\end{document}  
